@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.util.List;
 
-public class GameFrame extends JFrame{
+public class GameFrame extends JFrame {
 
         public static String pattern = "Mine";
 
@@ -95,7 +95,7 @@ public class GameFrame extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-//                      new TableDemo();
+//                      new PatternLibrary();
 //                      isStart = false;
 //                      stop = true;
 //                      startGameBtn.setText("开始游戏");
@@ -222,7 +222,7 @@ public class GameFrame extends JFrame{
                // while (!exit) {
                     final Game.Behavior generations = Game.run(0L, pattern);
                     System.out.println("Ending Game of Life after " + generations + " generations " + "pattern: " + pattern);
-                    //pattern = TableDemo.getPatternName()!=null ? TableDemo.getPatternName() : "Blip";
+                    //pattern = PatternLibrary.getPatternName()!=null ? PatternLibrary.getPatternName() : "Blip";
                     //final Game.Behavior generations = Game.run(0L, pattern);
                     //System.out.println("Ending Game of Life after " + generations + " generations "+"pattern: "+pattern);
 //                while (!stop) {

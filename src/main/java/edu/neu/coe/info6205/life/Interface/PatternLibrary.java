@@ -11,7 +11,7 @@ import java.text.MessageFormat;
 import java.util.Random;
 
 
-public class TableDemo extends JFrame {
+public class PatternLibrary extends JFrame {
     // 默认表格模型
     private DefaultTableModel model = null;
     private JTable table = null;
@@ -21,14 +21,13 @@ public class TableDemo extends JFrame {
     private JButton addBtn;
     private JButton selectBtn;
 
-    public TableDemo()
+    public PatternLibrary()
     {
-        //super("TableDemo");
+        //super("PatternLibrary");
         String[][] datas = {};
         String[] titles = { "PatternName", "Points" };
         model = new DefaultTableModel(datas, titles);
         table = new JTable(model);
-
         addBtn = new JButton("add");
         selectBtn = new JButton("select");
 
@@ -49,9 +48,7 @@ public class TableDemo extends JFrame {
 
             }
         });
-
         addBtn.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e)
             {
@@ -71,7 +68,6 @@ public class TableDemo extends JFrame {
         setVisible(true);
 
         populateTable();
-
     }
 
     public static String getPatternName() {
@@ -81,7 +77,6 @@ public class TableDemo extends JFrame {
     public String getPoints() {
         return points;
     }
-
 
     public void populateTable(){
         DefaultTableModel dtm = (DefaultTableModel)table.getModel();
@@ -96,18 +91,7 @@ public class TableDemo extends JFrame {
         }
     }
 
-    public static void main(String[] args)
-    {
-        new TableDemo();
-    }
-
-    /**
-     * 获得随机字符串,该方法仅用于获得随机字符串，可以忽略
-     *
-     * @return
-     */
-    private String getRandomData()
-    {
+    private String getRandomData() {
         String source = "0123456789";
         int len = source.length();
         Random random = new Random(System.currentTimeMillis());

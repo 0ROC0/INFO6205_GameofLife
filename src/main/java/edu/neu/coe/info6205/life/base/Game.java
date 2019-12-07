@@ -19,6 +19,7 @@ public class Game extends JFrame implements Generational<Game, Grid>, Countable,
 		public int getCount() {
 				return grid.getCount();
 		}
+		//GameFrame gameFrame = new GameFrame();
 
 		@Override
 		public String toString() {
@@ -75,27 +76,26 @@ public class Game extends JFrame implements Generational<Game, Grid>, Countable,
 		public Game generation(BiConsumer<Long, Grid> monitor) {
 				monitor.accept(generation, grid);
 			    //System.out.println(grid.getGroup().getP());//"___________________________________________________________"+
-			    GameFrame.showPoints(grid.getGroup().pointsAbsolute());
-//			    if(GameFrame.gamecon.exit){
-//				    Thread.currentThread().interrupt();
-//			    }
-    			try {
-					if(GameFrame.Gamestop()){
-						//GameFrame.gamecon.pauseThread();
-						onPause();
+                //if(gameFrame!=null)
+					//GameFrame.showPoints(grid.getGroup().pointsAbsolute());
+
+					try {
+						GameFrame.showPoints(grid.getGroup().pointsAbsolute());
+						if (GameFrame.Gamestop()) {
+							//GameFrame.gamecon.pauseThread();
+							onPause();
+						} else {
+							//GameFrame.gamecon.resumeThread();
+							resumeThread();
+						}
+						TimeUnit.MILLISECONDS.sleep(GameFrame.getTime());
+
+					} catch (NullPointerException ex) {
+						//ex.printStackTrace();
+					}catch (InterruptedException ex) {
+						ex.printStackTrace();
 					}
-					else{
-						//GameFrame.gamecon.resumeThread();
-						resumeThread();
-					}
-					TimeUnit.MILLISECONDS.sleep(GameFrame.getTime());
-
-
-
-
-		    	} catch (InterruptedException ex) {
-	     			ex.printStackTrace();
-		    	}
+				//}
 
 				return new Game(generation + 1, grid.generation(this.monitor), this, this.monitor);
 		}
@@ -145,7 +145,7 @@ public class Game extends JFrame implements Generational<Game, Grid>, Countable,
 				return generations > 0 ? growth * 1.0 / generations : -0.1;
 		}
 
-		public static final int MaxGenerations = 1000;
+		public static int MaxGenerations = 1000;
 
 		/**
 		 * Main program for Game of Life.
