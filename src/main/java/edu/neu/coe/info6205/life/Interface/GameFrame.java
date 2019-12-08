@@ -35,7 +35,7 @@ public class GameFrame extends JFrame {
 
         public static JTextField[][] textArea;
 
-        private static final int DEFAULT_DURATION = 200;
+        private static final int DEFAULT_DURATION = 50;
         private static int duration = DEFAULT_DURATION;
         String Closed="ImportWindow_Closed";
 
@@ -83,6 +83,7 @@ public class GameFrame extends JFrame {
             this.gamecon = gamecon;
             setTime();
             durationTextField.setText("");
+            Game.MaxGenerations = 1000;
     }
 
         public static void play(String p){
@@ -188,6 +189,7 @@ public class GameFrame extends JFrame {
                     //GameControlTask gamecon = new GameControlTask();
                     //Thread t1 = new Thread(gamecon, "T1");
                     gamecon.exit=false;
+
                     t1.start();
 
                     //play(MainFrame.getPname());
