@@ -81,6 +81,8 @@ public class GameFrame extends JFrame {
             //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             this.gamecon = gamecon;
+            setTime();
+            durationTextField.setText("");
     }
 
         public static void play(String p){
@@ -113,6 +115,10 @@ public class GameFrame extends JFrame {
         }
         return duration;
     }
+        public static int setTime(){
+                duration = 0;
+            return duration;
+        }
 
         public static void showPoints(List<Point> Points) {
         for (int x = -50; x < 50; x++) {
@@ -222,21 +228,7 @@ public class GameFrame extends JFrame {
                // while (!exit) {
                     final Game.Behavior generations = Game.run(0L, pattern);
                     System.out.println("Ending Game of Life after " + generations + " generations " + "pattern: " + pattern);
-                    //pattern = PatternLibrary.getPatternName()!=null ? PatternLibrary.getPatternName() : "Blip";
-                    //final Game.Behavior generations = Game.run(0L, pattern);
-                    //System.out.println("Ending Game of Life after " + generations + " generations "+"pattern: "+pattern);
-//                while (!stop) {
-//                    //cellMatrix.transform();
-//                    //showMatrix();
-//                    try {
-//                        TimeUnit.MILLISECONDS.sleep(duration);
-//                    } catch (InterruptedException ex) {
-//                        ex.printStackTrace();
-//                    } finally{
-//
-//                    }
-//                }
-                //}
+
             }
         }
 
