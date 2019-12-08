@@ -70,6 +70,9 @@ public class Game extends JFrame implements Generational<Game, Grid>, Countable,
 				lock.notify();
 			}
 		}
+		public List<Point> returnStartP(){
+			return grid.getGroup().pointsAbsolute();
+		}
 
 		@Override
 		public Game generation(BiConsumer<Long, Grid> monitor) {

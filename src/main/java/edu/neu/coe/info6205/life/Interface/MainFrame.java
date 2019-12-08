@@ -44,7 +44,7 @@ public class MainFrame extends JFrame implements ActionListener {
         this.add(jp1);
         this.add(jp2);
         this.add(jp3);
-        this.setLayout(new GridLayout(4,3,50,50)); //设置布局管理器
+        this.setLayout(new GridLayout(4,3,50,50));
         this.setTitle("Game of Life");
         //this.setSize(400,300);
         this.setLocation(200, 150);
