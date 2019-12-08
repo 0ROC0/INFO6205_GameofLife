@@ -180,6 +180,12 @@ public class Grid extends JFrame implements Generational<Grid, Group>, Countable
 				return inner(subList, result);
 		}
 
+	public List<Point> getP(){
+		List<Point> result = new ArrayList<>();
+		//result = this.
+		  return result;
+		}
+
 		private final long generation;
 		private final List<Group> groups;
 

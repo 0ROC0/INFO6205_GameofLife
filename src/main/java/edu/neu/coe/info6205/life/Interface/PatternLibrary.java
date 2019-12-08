@@ -7,8 +7,6 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.MessageFormat;
-import java.util.Random;
 
 
 public class PatternLibrary extends JFrame {
@@ -18,7 +16,7 @@ public class PatternLibrary extends JFrame {
     public int i,j = 1;
     public static String pattern;
     public String points;
-    private JButton addBtn;
+    private JButton reBtn;
     private JButton selectBtn;
 
     public PatternLibrary()
@@ -28,7 +26,7 @@ public class PatternLibrary extends JFrame {
         String[] titles = { "PatternName", "Points" };
         model = new DefaultTableModel(datas, titles);
         table = new JTable(model);
-        addBtn = new JButton("add");
+        reBtn = new JButton("refresh");
         selectBtn = new JButton("select");
 
         selectBtn.addActionListener(new ActionListener() {
@@ -48,15 +46,16 @@ public class PatternLibrary extends JFrame {
 
             }
         });
-        addBtn.addActionListener(new ActionListener() {
+        reBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                model.addRow(new String[] { String.valueOf(i++) , getRandomData() });
+                //model.addRow(new String[] { String.valueOf(i++) , getRandomData() });
+                populateTable();
             }
         });
 
-        add(addBtn, BorderLayout.NORTH);
+        add(reBtn, BorderLayout.NORTH);
         add(new JScrollPane(table));
         add(selectBtn, BorderLayout.SOUTH);
 
@@ -91,14 +90,14 @@ public class PatternLibrary extends JFrame {
         }
     }
 
-    private String getRandomData() {
-        String source = "0123456789";
-        int len = source.length();
-        Random random = new Random(System.currentTimeMillis());
-        //return MessageFormat.format("{0} {0}, ", source.charAt(random.nextInt(len)));
-        int a = source.charAt(random.nextInt(len));
-        int b = source.charAt(random.nextInt(len));
-        return MessageFormat.format("{0} {0}, ", a);
-    }
+//    private String getRandomData() {
+//        String source = "0123456789";
+//        int len = source.length();
+//        Random random = new Random(System.currentTimeMillis());
+//        //return MessageFormat.format("{0} {0}, ", source.charAt(random.nextInt(len)));
+//        int a = source.charAt(random.nextInt(len));
+//        int b = source.charAt(random.nextInt(len));
+//        return MessageFormat.format("{0} {0}, ", a);
+//    }
 
 }

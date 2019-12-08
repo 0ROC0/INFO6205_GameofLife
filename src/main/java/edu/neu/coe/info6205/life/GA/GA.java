@@ -27,7 +27,7 @@ public class GA {
     static int cols = runGA.getCols()!=0? runGA.getCols() : 3;
     //static int rows =  3;
     //static int cols =  3;
-    static int pop = 200 ;
+    static int pop = 1000 ;
 
     public GA(int rows, int cols) {
         this.rows = rows;
@@ -75,12 +75,12 @@ public class GA {
 
     public static List<Point> run() {
         final Engine<IntegerGene, Long> engine = Engine.builder(GA::eval, Codecs.ofMatrix(IntRange.of(0, 1), rows, cols)).optimize(Optimize.MAXIMUM).populationSize(pop).alterers(
-                new Mutator<>(0.2),
+                new Mutator<>(0.5),
                 new MeanAlterer<>(0.35)).build();
 
         final EvolutionStatistics<Integer, ?> statistics = EvolutionStatistics.ofNumber();
 
-        final Phenotype<IntegerGene, Long> result = engine.stream().limit(Limits.bySteadyFitness(5)).limit(Limits.byExecutionTime(Duration.ofMillis(500))).limit(1000).collect(toBestPhenotype());
+        final Phenotype<IntegerGene, Long> result = engine.stream().limit(Limits.byFixedGeneration(100)).limit(Limits.byExecutionTime(Duration.ofMillis(500))).collect(toBestPhenotype());
         System.out.println(result);
         System.out.println(result.toString());
 

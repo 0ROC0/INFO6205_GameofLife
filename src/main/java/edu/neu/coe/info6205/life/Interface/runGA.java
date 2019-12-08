@@ -2,6 +2,7 @@ package edu.neu.coe.info6205.life.Interface;
 
 import edu.neu.coe.info6205.life.GA.GA;
 import edu.neu.coe.info6205.life.base.Point;
+import edu.neu.coe.info6205.life.library.Library;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,8 +17,11 @@ public class runGA extends JFrame implements ActionListener{
     JRadioButton jrb1,jrb2=null;
     JPanel jp1,jp2,jp3,jp4=null;
     static JTextField jrf,jcf=null;
+    static JTextArea result = null;
     JLabel jlb1,jlb2,jlb3=null;
     ButtonGroup bg=null;
+    public String r ;
+    public int i;
 
     public static List<Point> points = new ArrayList<>();
 
@@ -34,17 +38,17 @@ public class runGA extends JFrame implements ActionListener{
 
         jp1=new JPanel();  jp2=new JPanel();  jp3=new JPanel();  jp4=new JPanel();
 
-        jlb1=new JLabel("rows:");  jlb2=new JLabel("cols:");  jlb3=new JLabel("q：");
+        jlb1=new JLabel("rows:");  jlb2=new JLabel("cols:");  jlb3=new JLabel("result:");
 
-        jrf=new JTextField(10); jcf=new JTextField(10);
+        jrf=new JTextField(10); jcf=new JTextField(10); result = new JTextArea();
 
         jp1.add(jlb1);jp1.add(jrf);
 
         jp2.add(jlb2);jp2.add(jcf);
 
-        jp3.add(jlb3);       jp3.add(jrb1);      jp3.add(jrb2);
+        //jp4.add(jlb3);       jp4.add(jrb1);      jp4.add(jrb2);
 
-        jp4.add(jb1);        jp4.add(jb2);       jp4.add(jb3);
+        jp3.add(jb1);        jp3.add(jb2);       jp3.add(jb3);  jp4.add(jlb3); jp4.add(result);
 
 
         this.add(jp1);       this.add(jp2);      this.add(jp3);       this.add(jp4);
@@ -60,11 +64,13 @@ public class runGA extends JFrame implements ActionListener{
         jb2.addActionListener(this);
         jb3.addActionListener(this);
 
+        GameFrame.setTime();
+
     }
 
     public static int getRows(){
         int r = 0;
-        if(isNumeric(jrf.getText())){
+        if(!jrf.getText().equals("") && isNumeric(jrf.getText())){
             r = Integer.parseInt(jrf.getText());
         }
         else r = 3;
@@ -72,7 +78,7 @@ public class runGA extends JFrame implements ActionListener{
     }
     public  static int getCols(){
         int c = 0;
-        if(isNumeric(jrf.getText())){
+        if(!jcf.getText().equals("") && isNumeric(jcf.getText())){
             c = Integer.parseInt(jcf.getText());
         }
         else c = 3;
@@ -88,11 +94,26 @@ public class runGA extends JFrame implements ActionListener{
         return true;
     }
 
+
     public void actionPerformed(ActionEvent e) {
 
         if(e.getSource()== jb1) {
+            int i = 1;
             GA ga = new GA(getRows(),getCols());
             points = ga.run();
+
+            StringBuffer str = new StringBuffer();
+            for(Point p:points){
+                str.append(p.getX());
+                str.append(" ");
+                str.append(p.getY());
+                str.append(",");
+            }
+            r = str.toString();
+
+            result.setText(r);
+            Library.put(String.valueOf(i++),r);
+
 
         } else if(e.getSource()== jb2) {
 

@@ -71,7 +71,6 @@ public class Game extends JFrame implements Generational<Game, Grid>, Countable,
 			}
 		}
 
-
 		@Override
 		public Game generation(BiConsumer<Long, Grid> monitor) {
 				monitor.accept(generation, grid);
@@ -80,7 +79,7 @@ public class Game extends JFrame implements Generational<Game, Grid>, Countable,
 					//GameFrame.showPoints(grid.getGroup().pointsAbsolute());
 
 					try {
-						GameFrame.showPoints(grid.getGroup().pointsAbsolute());
+						GameFrame.showPoints(grid.getGroup().pointsAbsolute());//getP());//pointsAbsolute());//grid.getGroup().returnP()//grid.getGroup().pointsAbsolute()
 						if (GameFrame.Gamestop()) {
 							//GameFrame.gamecon.pauseThread();
 							onPause();
