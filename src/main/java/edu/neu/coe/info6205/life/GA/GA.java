@@ -23,10 +23,10 @@ import static io.jenetics.engine.EvolutionResult.toBestPhenotype;
 
 public class GA {
 
-    static int rows = runGA.getRows()!=0? runGA.getRows() : 3;
-    static int cols = runGA.getCols()!=0? runGA.getCols() : 3;
-    //static int rows =  3;
-    //static int cols =  3;
+    //static int rows = runGA.getRows()!=0? runGA.getRows() : 3;
+    //static int cols = runGA.getCols()!=0? runGA.getCols() : 3;
+    static int rows =  3;
+    static int cols =  3;
     static int pop = 1000 ;
 
     public GA(int rows, int cols) {
@@ -68,7 +68,7 @@ public class GA {
 
     public static Long eval(int[][] gt){
         List<Point> points = toPoints(gt);
-        Game.MaxGenerations = 100;
+        Game.MaxGenerations = 1000;
         return Game.run(0L, points, Game.MaxGenerations).generation;
     }
 
@@ -105,13 +105,6 @@ public class GA {
         }
         return result;
     }
-
-//    public static void main(String[] args) {
-//        //System.out.println(po);
-//        List<Point> po = new ArrayList<>();
-//        po = run();
-//    }
-
 
 
 }

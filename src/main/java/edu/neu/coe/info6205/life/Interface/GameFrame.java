@@ -15,8 +15,6 @@ public class GameFrame extends JFrame {
 
         public static String pattern = "Mine";
 
-
-
         private JButton SelectPatternBtn = new JButton("Choose File");
         private JButton startGameBtn = new JButton("StartGame");
         private JButton pauseGameBtn = new JButton("Pause");
@@ -39,24 +37,13 @@ public class GameFrame extends JFrame {
         private static int duration = DEFAULT_DURATION;
         String Closed="ImportWindow_Closed";
 
-
-    //        public static void main(String[] args) {
-//        String patternName = args.length > 0 ? args[0] : "Blip";
-//        //Game.startGame(patternName);
-//        System.out.println("Game of Life with starting pattern: " + patternName);
-//        //Game g = new Game();
-//        new GameFrame();
-//        //pattern = Library.get(patternName);
-//
-//    }
-
         public static GameControlTask gamecon = new GameControlTask();
         Thread t1 = new Thread(gamecon, "T1");
 
         public GameFrame() {
             setTitle("Game of Life");
             initGridLayout();
-            SelectPatternBtn.addActionListener(new SelectPatternActioner());
+            //SelectPatternBtn.addActionListener(new SelectPatternActioner());
             startGameBtn.addActionListener(new StartGameActioner());
             pauseGameBtn.addActionListener(new PauseGameActioner());
 
@@ -95,19 +82,7 @@ public class GameFrame extends JFrame {
         patternTextField.setText(patternName+" : "+pattern);
     }
 
-        private class SelectPatternActioner implements ActionListener {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-//                      new PatternLibrary();
-//                      isStart = false;
-//                      stop = true;
-//                      startGameBtn.setText("开始游戏");
-//                      initGridLayout();
-//                      gridPanel.updateUI();
-            }
-
-    }
 
         public static int getTime(){
         try {
@@ -143,18 +118,18 @@ public class GameFrame extends JFrame {
         }
     }
 
-//    public void showP(List<Point> Points) {
-//        for (int x = -50; x < 50; x++) {
-//            for (int y = -50; y < 50; y++) {
-//                Point p = new Point(x, -y);
-//                if (Points.contains(p)) {
-//                    textArea[x+50][y+50].setBackground(Color.BLACK);
-//                } else {
-//                    textArea[x+50][y+50].setBackground(Color.WHITE);
-//                }
-//            }
-//        }
-//    }
+    public void showP() {
+        for (int x = -50; x < 50; x++) {
+            for (int y = -50; y < 50; y++) {
+                Point p = new Point(x, -y);
+                if (Point.points(pattern).contains(p)) {
+                    textArea[x+50][y+50].setBackground(Color.BLACK);
+                } else {
+                    textArea[x+50][y+50].setBackground(Color.WHITE);
+                }
+            }
+        }
+    }
 
         public static boolean Gamestop(){
         return stop;
