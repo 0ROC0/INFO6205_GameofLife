@@ -71,7 +71,6 @@ public class GameFrame extends JFrame {
             setTime();
             durationTextField.setText("");
             Game.MaxGenerations = 1000;
-            //showP(Game.returnStartP());
     }
 
         public static void play(String p){
@@ -80,6 +79,7 @@ public class GameFrame extends JFrame {
         //new GameFrame();
         pattern = Library.get(patternName);
         patternTextField.setText(patternName+" : "+pattern);
+        showPoints(Point.points(pattern));
     }
 
 
@@ -96,33 +96,12 @@ public class GameFrame extends JFrame {
                 duration = 0;
             return duration;
         }
-//        public static void showstartpattern(){
-//            for(int x=-50 ; x<50 ; x++){
-//                for(int y=-50 ; y<50 ; y++){
-//                    Point o = new Point(x,-y);
-//
-//                }
-//            }
-//        }
 
         public static void showPoints(List<Point> Points) {
         for (int x = -50; x < 50; x++) {
             for (int y = -50; y < 50; y++) {
                 Point p = new Point(x, -y);
                 if (Points.contains(p)) {
-                    textArea[x+50][y+50].setBackground(Color.BLACK);
-                } else {
-                    textArea[x+50][y+50].setBackground(Color.WHITE);
-                }
-            }
-        }
-    }
-
-    public void showP() {
-        for (int x = -50; x < 50; x++) {
-            for (int y = -50; y < 50; y++) {
-                Point p = new Point(x, -y);
-                if (Point.points(pattern).contains(p)) {
                     textArea[x+50][y+50].setBackground(Color.BLACK);
                 } else {
                     textArea[x+50][y+50].setBackground(Color.WHITE);
